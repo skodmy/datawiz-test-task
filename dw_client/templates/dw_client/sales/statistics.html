@@ -62,7 +62,7 @@
 </table>
 
 <h2>Per product sales statistics</h2>
-{% include 'dw_client/sales/per_products_sales_table.html' with what='grown' page_objects=per_prod_sales_stats_page.grown_group %}
-{% include 'dw_client/sales/per_products_sales_table.html' with what='fell' page_objects=per_prod_sales_stats_page.fell_group %}
+{% include 'dw_client/sales/per_products_sales_table.html' with how='grown' page_objects=per_prod_sales_stats_page.grown_group %}
+{% include 'dw_client/sales/per_products_sales_table.html' with how='fell' page_objects=per_prod_sales_stats_page.fell_group %}
 
 <script src="{% static 'dw_client/js/sales/statistics.js' %}"></script>
