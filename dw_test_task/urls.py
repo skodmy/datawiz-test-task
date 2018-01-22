@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+import dw_client
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('dw-client/', dw_client.site.urls),
 ]

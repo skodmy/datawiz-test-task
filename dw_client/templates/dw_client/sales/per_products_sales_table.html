@@ -1,0 +1,19 @@
+<h3 class="left">Products, which sales {{ what }}:</h3>
+<table class="responsive-table">
+    <thead>
+        <tr>
+            <td>Product name</td>
+            <td>Quantity delta</td>
+            <td>Turnover delta</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for page_object in page_objects %}
+            <tr>
+                <td>{{ page_object.name }}</td>
+                <td class="center">{{ page_object.qty|floatformat:-2 }}</td>
+                <td class="center">{{ page_object.turnover|floatformat:-2 }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

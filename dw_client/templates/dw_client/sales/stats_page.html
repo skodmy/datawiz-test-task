@@ -1,0 +1,38 @@
+{% extends 'dw_client/index.html' %}
+
+{% load staticfiles %}
+
+{% block custom_stylesheets %}
+    <link type="text/css" rel="stylesheet" href="{% static 'dw_client/css/sales/statistics.css' %}">
+{% endblock %}
+
+{% block container_content %}
+<div class="row">
+    <div class="col s12">
+        <h1>Sales statistics</h1>
+    </div>
+</div>
+<form>
+    <div class="row">
+        <div class="input-field col s2">
+            {{ form.date_from }}
+            {{ form.date_from.label_tag }}
+        </div>
+        <div class="input-field col s2">
+            {{ form.date_to }}
+            {{ form.date_to.label_tag }}
+        </div>
+        <div class="input-field col s2">
+            <input type="submit" class="btn right deep-purple" value="show">
+        </div>
+    </div>
+</form>
+<div class="row">
+    <div class="col s12 center" id="statistics">
+    </div>
+</div>
+{% endblock %}
+
+{% block custom_javascripts %}
+    <script src="{% static 'dw_client/js/sales/stats_page.js' %}"></script>
+{% endblock %}

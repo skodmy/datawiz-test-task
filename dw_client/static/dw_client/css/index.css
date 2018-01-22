@@ -1,0 +1,21 @@
+.nav-wrapper{
+    padding: 0 20px;
+}
+
+.preloader-wrapper.big.active{
+    margin-top: 275px;
+}
+
+.dropdown-button[href='#account_menu']{
+    font-size: 20px;
+}
+
+.dropdown-button[href='#account_menu'] > i{
+    font-size: 30px;
+}
+
+@media only screen and (max-width : 320px) and (max-width : 555px) and (max-width : 768px){
+    .brand-logo{
+        right: 0.5rem;
+    }
+}

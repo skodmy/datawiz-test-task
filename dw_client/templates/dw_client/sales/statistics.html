@@ -1,0 +1,68 @@
+{% load staticfiles %}
+
+{# pages numbers display limit is not set #}
+<ul class="pagination">
+    <li class="{% if active_page_number == 1 %}disabled{% else %}waves-effect{% endif %}">
+        <a href="{{ active_page_number|add:-1 }}"><i class="material-icons">chevron_left</i></a>
+    </li>
+    {% for page_number in page_numbers %}
+        <li class="waves-effect {% if page_number == active_page_number %}active deep-purple{% endif %}">
+            <a href="{{ page_number }}">{{ page_number }}</a>
+        </li>
+    {% endfor %}
+    <li class="{% if active_page_number == page_numbers|last %}disabled{% else %}waves-effect{% endif %}">
+        <a href="{{ active_page_number|add:1 }}"><i class="material-icons">chevron_right</i></a>
+    </li>
+</ul>
+
+<h2>General sales statistics</h2>
+<table class="responsive-table matrix-table">
+    {# hardcoded due to data structure complexity #}
+    {% for page in gen_page %}
+        <thead>
+            <tr>
+                <td>Attribute</td>
+                <td>{{ page.y.date }}</td>
+                <td>{{ page.x.date }}</td>
+                <td>Difference in %</td>
+                <td>Difference</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Turnover</td>
+                <td>{{ page.y.products_turnover }}</td>
+                <td>{{ page.x.products_turnover }}</td>
+                <td>{{ page.products_turnover.0 }}</td>
+                <td>{{ page.products_turnover.1 }}</td>
+            </tr>
+            <tr>
+                <td>Quantity</td>
+                <td>{{ page.y.products_qty }}</td>
+                <td>{{ page.x.products_qty }}</td>
+                <td>{{ page.products_qty.0 }}</td>
+                <td>{{ page.products_qty.1 }}</td>
+            </tr>
+            <tr>
+                <td>Receipts qty</td>
+                <td>{{ page.y.receipts_qty }}</td>
+                <td>{{ page.x.receipts_qty }}</td>
+                <td>{{ page.receipts_qty.0 }}</td>
+                <td>{{ page.receipts_qty.1 }}</td>
+            </tr>
+            <tr>
+                <td>Mean receipt</td>
+                <td>{{ page.y.mean_receipt }}</td>
+                <td>{{ page.x.mean_receipt }}</td>
+                <td>{{ page.mean_receipt.0 }}</td>
+                <td>{{ page.mean_receipt.1 }}</td>
+            </tr>
+        </tbody>
+    {% endfor %}
+</table>
+
+<h2>Per product sales statistics</h2>
+{% include 'dw_client/sales/per_products_sales_table.html' with what='grown' page_objects=per_prod_sales_stats_page.grown_group %}
+{% include 'dw_client/sales/per_products_sales_table.html' with what='fell' page_objects=per_prod_sales_stats_page.fell_group %}
+
+<script src="{% static 'dw_client/js/sales/statistics.js' %}"></script>

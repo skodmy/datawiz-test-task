@@ -1,0 +1,54 @@
+{% extends 'dw_client/base.html' %}
+
+{% load staticfiles %}
+
+{% block extra_stylesheets %}
+    <link type="text/css" rel="stylesheet" href="{% static 'dw_client/css/index.css' %}">
+    {% block  custom_stylesheets %}
+    {% endblock %}
+{% endblock %}
+
+{% block content %}
+    <ul id="account_menu" class="dropdown-content">
+        <li><a href="{% url 'dw-client:profile:info' %}">Profile</a></li>
+        <li><a href="{% url 'dw-client:sales:stats-page' %}">Sales</a></li>
+        <li class="divider"></li>
+        <li><a href="{% url 'dw-client:auth:sign:out' %}">Sign out</a></li>
+    </ul>
+    <ul id="account_menu_mobile" class="sidenav">
+        <li><a href="{% url 'dw-client:profile:info' %}">Profile</a></li>
+        <li><a href="{% url 'dw-client:sales:stats-page' %}">Sales</a></li>
+        <li class="divider"></li>
+        <li><a href="{% url 'dw-client:auth:sign:out' %}">Sign out</a></li>
+    </ul>
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper deep-purple">
+                <a href="{% url 'dw-client:profile:info' %}" class="brand-logo">DW</a>
+                {% if request.dw %}
+                    <a href="#account_menu_mobile" data-activates="account_menu_mobile" class="button-collapse sidenav-trigger hide-on-med-and-up left">
+                        <i class="material-icons">menu</i>
+                    </a>
+                    <a class="dropdown-button hide-on-small-only right" href="#account_menu" data-activates="account_menu">
+                        <i class="material-icons left">account_circle</i>
+                        {{ request.dw.client.info.name|default:'anonymous' }}
+                    </a>
+                {% endif %}
+            </div>
+        </nav>
+    </div>
+    <div class="container">
+        {% block container_content %}
+            <div class="row">
+                <div class="col s12 center">
+                </div>
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% block extra_javascripts %}
+    <script src="{% static 'dw_client/js/index.js' %}"></script>
+    {% block custom_javascripts %}
+    {% endblock %}
+{% endblock %}

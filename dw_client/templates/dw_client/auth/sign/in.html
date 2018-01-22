@@ -1,0 +1,43 @@
+{% extends 'dw_client/index.html' %}
+
+{% load staticfiles %}
+
+{% block custom_stylesheets %}
+    <link type="text/css" rel="stylesheet" href="{% static 'dw_client/css/auth/sign/in.css' %}">
+{% endblock %}
+
+{% block container_content %}
+    <div class="row center">
+        <div class="col s12 offset-m3 m5 offset-l4 l4">
+            <form method="POST" action="">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col s12 center">
+                        <h4 class="deep-purple-text">Authorization</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        {{ form.key }}
+                        {{ form.key.label_tag }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        {{ form.secret }}
+                        {{ form.secret.label_tag }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <input type="submit" class="btn right deep-purple" value="sign in">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block custom_javascripts %}
+    <script src="{% static 'dw_client/js/auth/sign/in.js' %}"></script>
+{% endblock %}
