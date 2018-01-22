@@ -97,6 +97,8 @@ def compute_sales_all_stats(products_sales: DataFrame, stats_comp_func: Callable
     """
     Computes all products sales statistics by using statistics computation function.
 
+    IT'S BETTER TO TURN THIS INTO GENERATOR-FUNCTION TO SAVE MEMORY, BUT LATER DIFFS COMPUTATION REQUIRES A LIST =)
+
     :param products_sales: a DataFrame instance with products sales data.
     :param stats_comp_func: a callable which will be used to compute statistics.
     :return: a list with all computed statistics.
@@ -112,6 +114,8 @@ def compute_sales_all_stats(products_sales: DataFrame, stats_comp_func: Callable
 def compute_sales_all_stats_diffs(all_stats: List, stats_diff_comp_func: Callable=compute_sales_general_stats_diff):
     """
     Computes all product sales statistics differences by using statistics difference computation function.
+
+    IT'S BETTER TO TURN THIS INTO GENERATOR-FUNCTION TO SAVE MEMORY, BUT LATER PAGINATION REQUIRES LIST.
 
     :param all_stats: a list of all sales statistics dictionaries.
     :param stats_diff_comp_func: a callable which will be used to compute statistics difference.

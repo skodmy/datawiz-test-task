@@ -70,19 +70,19 @@ def stats_page(request):
 def sales_statistics(request, date_from, date_to, page_number=1):
     if request.is_ajax():
         # getting products sales statistics
-        general_stats, per_product_stats = compute_products_sales_statistics(
+        gen_sales_stats, per_prod_sales_stats = compute_products_sales_statistics(
             request.dw,
             date_from,
             date_to,
             incl_per_prod=True
         )
         # paginating them
-        general_sales_stats_paginator = Paginator(general_stats, 1)
-        per_product_sales_stats_paginator = Paginator(per_product_stats, 1)
+        gen_sales_stats_paginator = Paginator(gen_sales_stats, 1)
+        per_prod_sales_stats_paginator = Paginator(per_prod_sales_stats, 1)
         # grouping per product sales statistics by income character
         prods_grown_in_sales_stats_group, prods_fell_in_sales_stats_group = group_per_product_sales_stats(
-            per_product_sales_stats_paginator.get_page(page_number).object_list[0]
-            if page_number in per_product_sales_stats_paginator.page_range
+            per_prod_sales_stats_paginator.get_page(page_number).object_list[0]
+            if page_number in per_prod_sales_stats_paginator.page_range and per_prod_sales_stats_paginator.count != 0
             else []
         )
         # rendering tables with gathered statistics data
@@ -91,9 +91,9 @@ def sales_statistics(request, date_from, date_to, page_number=1):
             'dw_client/sales/statistics.html',
             {
                 'active_page_number': page_number,
-                'page_numbers': list(general_sales_stats_paginator.page_range),
-                'gen_page': general_sales_stats_paginator.get_page(page_number).object_list
-                if page_number in general_sales_stats_paginator.page_range
+                'page_numbers': list(gen_sales_stats_paginator.page_range),
+                'gen_page': gen_sales_stats_paginator.get_page(page_number).object_list
+                if page_number in gen_sales_stats_paginator.page_range
                 else [],
                 'per_prod_sales_stats_page': {
                     'grown_group': prods_grown_in_sales_stats_group,

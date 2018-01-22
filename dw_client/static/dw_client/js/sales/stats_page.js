@@ -10,7 +10,7 @@ $(document).ready(function(){
             (!page_number? '/1/' : '/' + page_number + '/')
     };
     // local
-    var datepickers = $('input[name^="date"]').addClass('validate datepicker');
+    var datepickers = $('input[name^="date"]').addClass('valid datepicker');
 
     function to_ints_array(date_str){
         var ints = [];
@@ -20,8 +20,19 @@ $(document).ready(function(){
         return ints;
     }
 
+    function gt(first_date_int_arr, second_date_int_arr){
+        if(first_date_int_arr.length !== second_date_int_arr.length){
+            return false;
+        }
+        var ret = true;
+        for(var index=0; index<first_date_int_arr.length; index++){
+            ret &= first_date_int_arr[index] >= second_date_int_arr[index];
+        }
+        return ret;
+    }
+
     function validate_dates(date_from, date_to){
-        if(to_ints_array(date_from) > to_ints_array(date_to)){
+        if(gt(to_ints_array(date_from), to_ints_array(date_to))){
             return [date_to, date_from];
         }
         return [date_from, date_to];
@@ -32,7 +43,7 @@ $(document).ready(function(){
         $(this).datepicker({
             format: 'yyyy-mm-dd',
             yearRange: 3,
-            minDate: new Date(2014, 5, 1),
+            minDate: new Date(2014, 5, 1),   // hardcoded for test user
             maxDate: new Date(2015, 10, 18), // there October, but in picker November
             onDraw: function(){
                 // customizing look here due to usage of [materialize] defined classes
@@ -40,6 +51,7 @@ $(document).ready(function(){
                 $('.datepicker-today, .datepicker-done, .dropdown-content li > a, .dropdown-content li > span').addClass('deep-purple-text');
             }
         });
+        $(this).prop('readonly', true);
     });
 
     $('form').submit(function(event){

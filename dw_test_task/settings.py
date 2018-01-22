@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'x76buo4$f36kv0x+6@acp$bp=90u%b@p3)x1&ioury0-2$)^pg'
+SECRET_KEY = 'x76buo4$f36kv0x+6@acp$bp=90u%b@p3)x1&ioury0-2$)^pg'  # not secure
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -75,7 +75,7 @@ WSGI_APPLICATION = 'dw_test_task.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',  # using sqlite3, 'cause project's tiny
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),  # no reasons for usage more advanced db
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),  # will be more secure if use more advanced database
     }
 }
 
