@@ -1,0 +1,23 @@
+@media only screen and (min-width: 768px){
+    .row.center{
+        margin-top: 0;
+    }
+}
+
+@media only screen and (min-width: 992px){
+    .row.center{
+        margin-top: 100px;
+    }
+}
+
+@media only screen and (min-width: 1200px){
+    .row.center{
+        margin-top: 150px;
+    }
+}
+
+@media only screen and (min-width: 1300px){
+    .row.center{
+        margin-top: 250px;
+    }
+}

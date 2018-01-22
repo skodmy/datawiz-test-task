@@ -13,11 +13,12 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
+from django.shortcuts import redirect
 from django.urls import path
 
 import dw_client
 
 urlpatterns = [
     path('dw-client/', dw_client.site.urls),
+    path('', lambda request: redirect('dw-client:auth:sign:in')),
 ]

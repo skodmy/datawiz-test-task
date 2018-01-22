@@ -1,0 +1,7 @@
+thead > tr > td{
+    font-weight: bold;
+}
+
+.matrix-table > tbody > tr > td:first-child{
+    font-weight: bold;
+}
