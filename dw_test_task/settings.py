@@ -20,7 +20,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['skodmy.pythonanywhere.com', 'api.datawiz.io']
+ALLOWED_HOSTS = ['skodmy.pythonanywhere.com']
 
 
 # Application definition
